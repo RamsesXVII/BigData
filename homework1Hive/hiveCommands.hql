@@ -95,10 +95,10 @@ select a.userId, b.userId, count(*), collect_set(a.productId), collect_set(b.pro
 rimuovere duplicati
 HIVE3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-select sq.utenteA, sq.utenteB, sq.numeroProdottiComuni,sq.elencoProdottiComuni from (select a.userId as utenteA, b.userId as utenteB, count(*) as numeroProdottiComuni, collect_set(a.productId) as elencoProdottiComuni from reviews a join reviews b on a.productId=b.productId where a.score >=4 and b.score>=4 and a.userId<>b.userId group by a.userId,b.userId) as sq
-where sq.numeroProdottiComuni>=2 order by sq.utenteA;
+select sq.utenteA, sq.utenteB, sq.numeroProdottiComuni,sq.elencoProdottiComuni from (select a.userId as utenteA, b.userId as utenteB, count(distinct a.productId) as numeroProdottiComuni, collect_set(a.productId) as elencoProdottiComuni from reviews a join reviews b on a.productId=b.productId where a.score >=4 and b.score>=4 and a.userId<>b.userId group by a.userId,b.userId) as sq
+where sq.numeroProdottiComuni>=3 and sq.utenteA>sq.utenteB order by sq.utenteA,sq.utenteB;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-select sq.utenteA, sq.utenteB, sq.numeroProdottiComuni,sq.elencoProdottiComuni from (select a.userId as utenteA, b.userId as utenteB, count(*) as numeroProdottiComuni, collect_set(a.productId) as elencoProdottiComuni from reviews a join reviews b on a.productId=b.productId where a.score >=4 and b.score>=4 and a.userId<>b.userId group by a.userId,b.userId) as sq
-where sq.numeroProdottiComuni>=3 and sq.utenteA>sq.utenteB order by sq.utenteA,sq.utenteB;
+
+
