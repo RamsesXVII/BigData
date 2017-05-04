@@ -1,4 +1,4 @@
-package topProductsMonths;
+package task1;
 
 import homeworkUtilities.ProductWritable;
 import java.io.IOException;

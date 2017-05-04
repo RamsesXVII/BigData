@@ -1,5 +1,6 @@
-package topProductsMonths;
+package task2;
 
+import homeworkUtilities.ProductWritable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -7,18 +8,16 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import homeworkUtilities.ProductWritable;
-
-public class TopProductsMonths {
+public class UserFavoriteProducts {
 
 	public static void main(String[] args) throws Exception {
 
-		Job job = new Job(new Configuration(), "TopProductsMonths");
+		Job job = new Job(new Configuration(), "userFavoriteProducts");
 
-		job.setJarByClass(TopProductsMonths.class);
+		job.setJarByClass(UserFavoriteProducts.class);
 		
-		job.setMapperClass(TopProductsMonthsMapper.class);
-		job.setReducerClass(TopProductsMonthsReducer.class);
+		job.setMapperClass(UserFavoriteProductsMapper.class);
+		job.setReducerClass(UserFavoriteProductsReducer.class);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));

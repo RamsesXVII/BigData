@@ -1,5 +1,6 @@
-package topProductsMonths;
+package task1;
 
+import homeworkUtilities.ProductWritable;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import java.util.Map.Entry;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
-public class topProductsMonthsReducer extends
+public class TopProductsMonthsReducer extends
 Reducer<Text, ProductWritable, Text, Text> {
 
 

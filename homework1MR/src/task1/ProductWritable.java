@@ -1,4 +1,4 @@
-package topProductsMonths;
+package task1;
 
 import java.io.DataInput;
 import java.io.DataOutput;

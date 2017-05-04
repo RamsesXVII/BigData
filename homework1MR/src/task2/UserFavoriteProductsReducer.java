@@ -1,4 +1,4 @@
-package userFavoriteProducts;
+package task2;
 
 import java.io.IOException;
 import java.util.Collections;
