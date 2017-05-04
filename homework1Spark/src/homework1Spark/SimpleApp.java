@@ -22,7 +22,7 @@ public class  SimpleApp {
 			public Boolean call(String s) {
 				return s.contains("b"); } 
 		}).count(); 
-		System.out.println("Lines with a: "+ numAs +", lines with b:" + numBs); 
-
+		System.out.println("Lines with a: "+ numAs +", lines with b:" + numBs);
+		sc.close();
 	}
 }

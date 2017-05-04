@@ -11,8 +11,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/iori/Downloads/es_4/es_4/jars/spark-in-practice-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/iori/Downloads/es_4/es_4/jars/twitter4j-core-3.0.3.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
