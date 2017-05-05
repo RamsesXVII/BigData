@@ -1,5 +1,6 @@
 package task2;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.spark.SparkConf;
@@ -10,6 +11,7 @@ import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.PairFunction;
 
 import scala.Tuple2;
+import scala.Tuple3;
 
 public class  userFavoriteProducts { 
 	public static void main(String[] args) { 
@@ -19,20 +21,17 @@ public class  userFavoriteProducts {
 
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
-		JavaRDD<String> logData = sc.textFile(logFile).cache(); 
-
-		JavaPairRDD<String, String> userProducts = logData.mapToPair(
-				new PairFunction<String, String, String>(){
-					@Override
-					public Tuple2<String, String> call(String s){
-						String[] splitted = s.split("\\t");
-						return new Tuple2<>(splitted[1], splitted[2]+ ";"+ splitted[3]);
+		JavaRDD<String> logData = sc.textFile(logFile).cache();
+		
+		JavaRDD<Tuple3<String,String,String>> x = logData.map(
+				new Function<String, Tuple3<String,String,String>>() {
+					public Tuple3<String, String, String> call(String s){
+						return new Tuple3<>("a","a","a");
 					}
 				});
-		List<Tuple2<String, String>> output = userProducts.collect();
-		for(Tuple2<?,?> t: output){
-			System.out.println(t._1() + "; " + t._2());
-		}
+		
+		
+		
 		sc.close();
 	}
 }

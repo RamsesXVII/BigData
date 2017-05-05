@@ -54,7 +54,7 @@ Reducer<Text, ProductWritable, Text, Text> {
 		Collections.sort(productAvg);
 		/* stampa i primi 5 */
 		for(int i=0; i<5; i++){
-			if(!productAvg.isEmpty()){
+			if(productAvg.size()>i){
 				ProductWritable p = productAvg.get(i);
 				context.write(key, new Text(p.toString()));
 			}

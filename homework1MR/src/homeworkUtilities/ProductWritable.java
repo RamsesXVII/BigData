@@ -70,7 +70,10 @@ public class ProductWritable implements WritableComparable<ProductWritable> {
 	@Override
 	public int compareTo(ProductWritable o) {
 		Double result = o.getScore() - this.score;
-		int i = result.intValue();
-		return i;
+		if(result>0)
+			return 1;
+		if(result<0)
+			return -1;
+		return 0;
 	}
 }

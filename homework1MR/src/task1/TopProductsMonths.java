@@ -1,5 +1,6 @@
 package task1;
 
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -27,6 +28,7 @@ public class TopProductsMonths {
 		job.setMapOutputValueClass(ProductWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
+
 
 		job.waitForCompletion(true);
 	}
