@@ -21,16 +21,22 @@ Reducer<Text, ProductWritable, Text, Text> {
 		List<ProductWritable> userProducts = new LinkedList<>();
 
 		for(ProductWritable p : values){
-			userProducts.add(p);
-		}
+			ProductWritable pnew= new ProductWritable(p.getId(), p.getScore());
+			userProducts.add(pnew);
+
+		}	
 		
 		String result ="\t";
+
+		
 		Collections.sort(userProducts);
+		
+
 		/* stampa i primi 5 */
 		for(int i=0; i<10; i++){
-			if(!(userProducts.size()<=i)){
+			if((userProducts.size()>i)){
 				ProductWritable p = userProducts.get(i);
-				result = result + "(" + p.getId() + "," + p.getScore() +");";
+				result = result + "\"" + p.getId() + "-" + p.getScore() +"\",";
 			}
 		}
 		context.write(key, new Text(result));
