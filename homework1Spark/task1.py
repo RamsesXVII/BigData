@@ -1,8 +1,9 @@
 from pyspark.sql import SparkSession
+import datetime
+
 spark = SparkSession.builder.appName("appName").getOrCreate()
 sc = spark.sparkContext
 
-import datetime
 records = sc.textFile("amazon/1999_2006.csv")
 seqOp = lambda x, y : (float(x[0]) + float(y), float(x[1]) + 1)
 combOp = lambda x, y : (float(x[0]) + float(y[0]), float(x[1]) + float(y[1]))
