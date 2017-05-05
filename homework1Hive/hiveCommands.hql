@@ -11,7 +11,7 @@ select sq.numeroRiga,sq.productId, sq.annoMese, sq.media from  (select ROW_NUMBE
 
 #HIVE2
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-select sq.numeroriga, sq.userId, sq.productId, sq.score from (select ROW_NUMBER() OVER (PARTITION BY userId ORDER BY score desc) as numeroriga, userId, productId, score from reviews order by userId, productId, score desc) as sq where sq.numeroriga<11 order by sq.userId;
+select sq.userId,collect_set(concat(sq.productId,concat("-",sq.score))) from (select ROW_NUMBER() OVER (PARTITION BY userId ORDER BY score desc) as numeroriga, userId, productId, score from reviews order by userId, productId, score desc) as sq where sq.numeroriga<11 group by sq.userId order by sq.userId;
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
