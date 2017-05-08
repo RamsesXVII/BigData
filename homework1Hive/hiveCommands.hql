@@ -1,6 +1,6 @@
 CREATE TABLE reviews (id STRING, productId STRING, userId STRING, profileName STRING, helpfulnessNumerator STRING, helpfulnessDenominator STRING, score INT, time BIGINT, summary STRING, text STRING) row format delimited fields terminated by '\t';
 
-LOAD DATA LOCAL INPATH '/home/iori/Downloads/FineFoodReviews/amazon/1999_2006.csv' OVERWRITE INTO TABLE reviews;
+LOAD DATA LOCAL INPATH '/home/mattia/Scaricati/amazon/dati.csv' OVERWRITE INTO TABLE reviews;
 
 
 #HIVE1

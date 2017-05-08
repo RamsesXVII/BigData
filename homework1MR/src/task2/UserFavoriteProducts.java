@@ -1,6 +1,9 @@
 package task2;
 
 import homeworkUtilities.ProductWritable;
+
+import java.time.Instant;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
@@ -27,6 +30,9 @@ public class UserFavoriteProducts {
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
 
+		long start = Instant.now().toEpochMilli();
 		job.waitForCompletion(true);
+		long end = Instant.now().toEpochMilli();
+		System.out.println(end - start);
 	}
 }

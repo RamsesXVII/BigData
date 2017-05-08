@@ -1,5 +1,7 @@
 package task3;
 
+import java.time.Instant;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 
@@ -20,7 +22,7 @@ import org.apache.hadoop.util.ToolRunner;
  */
 public class SimilarCustomer extends Configured implements Tool {
 
-	private static final String OUTPUT_PATH = "/user/mattia/output/intermediate_output";
+	private static final String OUTPUT_PATH = "/output/intermediate_output";
 
 	@Override
 	public int run(String[] args) throws Exception {
@@ -48,6 +50,7 @@ public class SimilarCustomer extends Configured implements Tool {
 		TextInputFormat.addInputPath(job, new Path(args[0]));
 		TextOutputFormat.setOutputPath(job, new Path(OUTPUT_PATH));
 
+		long start = Instant.now().toEpochMilli();
 		job.waitForCompletion(true);
 
 		/*
@@ -69,7 +72,10 @@ public class SimilarCustomer extends Configured implements Tool {
 		TextInputFormat.addInputPath(job2, new Path(OUTPUT_PATH));
 		TextOutputFormat.setOutputPath(job2, new Path(args[1]));
 
-		return job2.waitForCompletion(true) ? 0 : 1;
+		int result = job2.waitForCompletion(true) ? 0 : 1;
+		long end = Instant.now().toEpochMilli();
+		System.out.println(end - start);
+		return result;
 	}
 
 	/**

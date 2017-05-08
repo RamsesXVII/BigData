@@ -4,7 +4,7 @@ import datetime
 spark = SparkSession.builder.appName("appName").getOrCreate()
 sc = spark.sparkContext
 
-records = sc.textFile("amazon/1999_2006.csv")
+records = sc.textFile("amazon/dati.csv")
 seqOp = lambda x, y : (float(x[0]) + float(y), float(x[1]) + 1)
 combOp = lambda x, y : (float(x[0]) + float(y[0]), float(x[1]) + float(y[1]))
 rows = records.map(lambda line: line.split("\t"))

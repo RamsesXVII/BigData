@@ -3,7 +3,7 @@ import sys
 
 spark = SparkSession.builder.appName("appName").getOrCreate()
 sc = spark.sparkContext
-records = sc.textFile("/home/iori/Downloads/FineFoodReviews/amazon/1999_2006.csv")
+records = sc.textFile("amazon/dati.csv")
 rows = records.map(lambda line: line.split("\t"))
 a=rows.map(lambda x: [x[1],x[2],x[6]]).filter(lambda x: int(x[2])>=4).map(lambda n: (str(n[0]),[str(n[1]),str(n[2])]))
 
