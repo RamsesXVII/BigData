@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import homeworkUtilities.ProductWritable;
 
-public class UserFavoriteProductsReducer extends
+public class UserFavouriteProductsReducer extends
 Reducer<Text, ProductWritable, Text, Text> {
 
 

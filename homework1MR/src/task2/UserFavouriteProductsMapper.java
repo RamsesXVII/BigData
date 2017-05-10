@@ -7,7 +7,7 @@ import org.apache.hadoop.mapreduce.Mapper;
 import homeworkUtilities.ProductWritable;
 
 
-public class UserFavoriteProductsMapper extends
+public class UserFavouriteProductsMapper extends
 Mapper<LongWritable, Text, Text, ProductWritable> {
 
 public void map(LongWritable key, Text value, Context context)

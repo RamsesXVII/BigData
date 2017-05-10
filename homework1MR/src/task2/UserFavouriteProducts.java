@@ -11,16 +11,16 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class UserFavoriteProducts {
+public class UserFavouriteProducts {
 
 	public static void main(String[] args) throws Exception {
 
 		Job job = new Job(new Configuration(), "userFavoriteProducts");
 
-		job.setJarByClass(UserFavoriteProducts.class);
+		job.setJarByClass(UserFavouriteProducts.class);
 		
-		job.setMapperClass(UserFavoriteProductsMapper.class);
-		job.setReducerClass(UserFavoriteProductsReducer.class);
+		job.setMapperClass(UserFavouriteProductsMapper.class);
+		job.setReducerClass(UserFavouriteProductsReducer.class);
 
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
