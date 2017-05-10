@@ -39,6 +39,7 @@ Reducer<Text, ProductWritable, Text, Text> {
 				result = result + "\"" + p.getId() + "-" + p.getScore() +"\",";
 			}
 		}
+		result = result.substring(0, result.lastIndexOf(","));
 		context.write(key, new Text(result));
 	}
 }
