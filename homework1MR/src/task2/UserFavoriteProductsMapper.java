@@ -20,6 +20,8 @@ public void map(LongWritable key, Text value, Context context)
 	Text userID= new Text(token[2]);
 	Double score= Double.parseDouble(token[6]);
 		
+	
+	
 	ProductWritable product = new ProductWritable(productID, score);
 	context.write(userID, product);
 	}
