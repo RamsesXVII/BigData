@@ -25,18 +25,16 @@ Reducer<Text, ProductWritable, Text, Text> {
 
 		for (ProductWritable product : values) {
 			Text id = product.getId();
-			if(productScore.containsKey(id)){
-				LinkedList<Double> scores = productScore.get(id);
-				scores.add(product.getScore());
-				productScore.put(id, scores);
-			} else {
-				LinkedList<Double> scores = new LinkedList<>();
-				scores.add(product.getScore());
-				productScore.put(id, scores);
-			}
+			LinkedList<Double> scores;
+			
+			if(productScore.containsKey(id))
+				scores = productScore.get(id);
+			else 
+				scores = new LinkedList<>();
+			
+			scores.add(product.getScore());
+			productScore.put(id, scores);
 		}
-
-
 
 		List<ProductWritable> productAvg = new LinkedList<>();
 

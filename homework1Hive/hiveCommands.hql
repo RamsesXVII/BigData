@@ -1,7 +1,8 @@
-CREATE TABLE reviews (id STRING, productId STRING, userId STRING, profileName STRING, helpfulnessNumerator STRING, helpfulnessDenominator STRING, score INT, time BIGINT, summary STRING, text STRING) row format delimited fields terminated by '\t';
+CREATE TABLE IF NOT EXISTS reviews (id STRING, productId STRING, userId STRING, profileName STRING, helpfulnessNumerator STRING, helpfulnessDenominator STRING, score INT, time BIGINT, summary STRING, text STRING) row format delimited fields terminated by '\t';
 
 LOAD DATA LOCAL INPATH '/home/mattia/Scaricati/amazon/dati.csv' OVERWRITE INTO TABLE reviews;
 
+INSERT OVERWRITE DIRECTORY '/path/to/output/dir' QUERY;
 
 #HIVE1
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -18,6 +19,5 @@ select sq.userId,collect_set(concat(sq.productId,concat("-",sq.score))) from (se
 
 #HIVE 3 (FACOLTATIVO)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-select sq.utenteA, sq.utenteB, sq.numeroProdottiComuni,sq.elencoProdottiComuni from (select a.userId as utenteA, b.userId as utenteB, count(distinct a.productId) as numeroProdottiComuni, collect_set(a.productId) as elencoProdottiComuni from reviews a join reviews b on a.productId=b.productId where a.score >=4 and b.score>=4 and a.userId<>b.userId group by a.userId,b.userId) as sq
-where sq.numeroProdottiComuni>=3 and sq.utenteA<sq.utenteB order by sq.utenteA,sq.utenteB;
+select sq.utenteA, sq.utenteB, sq.numeroProdottiComuni,sq.elencoProdottiComuni from (select a.userId as utenteA, b.userId as utenteB, count(distinct a.productId) as numeroProdottiComuni, collect_set(a.productId) as elencoProdottiComuni from reviews a join reviews b on a.productId=b.productId where a.score >=4 and b.score>=4 and a.userId<>b.userId group by a.userId,b.userId) as sq where sq.numeroProdottiComuni>=3 and sq.utenteA<sq.utenteB order by sq.utenteA,sq.utenteB;
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
