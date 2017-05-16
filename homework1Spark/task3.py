@@ -24,7 +24,7 @@ for c in a:
 	out_file.write(str(c[0])+" ")
 	for d in list(c[1]):
 		out_file.write(d+";")
-	out_fle.write("\n")
+	out_file.write("\n")
 
 out_file.close()
 
