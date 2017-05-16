@@ -29,7 +29,8 @@ public class UserFavouriteProducts {
 		job.setMapOutputValueClass(ProductWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-
+		job.setNumReduceTasks(3);
+		
 		long start = Instant.now().toEpochMilli();
 		job.waitForCompletion(true);
 		long end = Instant.now().toEpochMilli();
