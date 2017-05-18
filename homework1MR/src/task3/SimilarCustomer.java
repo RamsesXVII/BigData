@@ -47,7 +47,7 @@ public class SimilarCustomer extends Configured implements Tool {
 		job.setInputFormatClass(TextInputFormat.class); //??
 		job.setOutputFormatClass(TextOutputFormat.class);
 		
-		job.setNumReduceTasks(4);
+		job.setNumReduceTasks(3);
 		
 
 		TextInputFormat.addInputPath(job, new Path(args[0]));
@@ -69,7 +69,7 @@ public class SimilarCustomer extends Configured implements Tool {
 		job2.setOutputKeyClass(Text.class);
 		job2.setOutputValueClass(Text.class);
 		
-		job2.setNumReduceTasks(4);
+		job2.setNumReduceTasks(3);
 		
 		job2.setInputFormatClass(TextInputFormat.class);
 		job2.setOutputFormatClass(TextOutputFormat.class);

@@ -13,7 +13,7 @@ public class YearPartitioner extends Partitioner<Text, ProductWritable> {
 		String year = yearMonth[0];
 		int yearInt = Integer.parseInt(year);
 		
-		return yearInt % 2;
+		return yearInt % 3;
 	}
 	
 }

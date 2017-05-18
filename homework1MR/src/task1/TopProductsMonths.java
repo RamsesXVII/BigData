@@ -30,8 +30,8 @@ public class TopProductsMonths {
 		job.setMapOutputValueClass(ProductWritable.class);
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(Text.class);
-		//job.setPartitionerClass(YearPartitioner.class);
-		//job.setNumReduceTasks(2);
+		job.setPartitionerClass(YearPartitioner.class);
+		job.setNumReduceTasks(3);
 
 		long start = Instant.now().toEpochMilli();
 		job.waitForCompletion(true);
